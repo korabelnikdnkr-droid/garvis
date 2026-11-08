@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+@layer base {
+  /* Переменные для тем */
+  :root {
+    --jarvis-cyan: #00e5ff;
+    --jarvis-purple: #a855f7;
+    --jarvis-bg: #030712;
+  }
+
+  [data-theme="fluid-glass"] {
+    --jarvis-cyan: #ffffff;
+    --jarvis-purple: #38bdf8;
+    --jarvis-bg: #0f172a;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    color: #f8fafc;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    overflow: hidden;
+    user-select: none;
+  }
+}
+
+/* Кастомный минималистичный скроллбар */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 229, 255, 0.5);
+}
+
+/* Неоновые эффекты свечения */
+.glow-cyan {
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.4);
+}
+
+.glow-purple {
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.glow-glass {
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+}

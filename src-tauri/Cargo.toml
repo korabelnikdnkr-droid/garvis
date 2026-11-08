@@ -1,0 +1,76 @@
+[package]
+name = "jarvis-assistant"
+version = "0.1.0"
+description = "Модульный голосовой ассистент Джарвис для Windows 11"
+authors = ["Jarvis Architect"]
+edition = "2021"
+
+[lib]
+name = "jarvis_assistant_lib"
+crate-type = ["staticlib", "cdylib", "rlib"]
+
+[build-dependencies]
+tauri-build = { version = "2.0.0", features = [] }
+
+[dependencies]
+# Основной фреймворк Tauri v2
+tauri = { version = "2.0.0", features = ["tray-icon"] }
+tauri-plugin-shell = "2.0.0"
+tauri-plugin-fs = "2.0.0"
+
+# Асинхронный рантайм Tokio
+tokio = { version = "1.40", features = ["full"] }
+
+# Сериализация и десериализация данных
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+
+# Асинхронный HTTP-клиент для xAI Grok и Edge-TTS
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "stream"] }
+
+# Структурированное асинхронное логирование
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "fmt", "time", "local-time"] }
+tracing-appender = "0.2"
+
+# Безопасная обработка ошибок без паник и unwrap
+thiserror = "1.0"
+anyhow = "1.0"
+
+# Безопасное хранилище учетных данных (Windows Credential Manager)
+keyring = "2.3"
+
+# Работа с переменными окружения
+dotenvy = "0.15"
+
+# Аудиозахват, синтез речи и воспроизведение (CPAL, Vosk, Rodio)
+cpal = "0.15"
+vosk = "0.3"
+hound = "3.5"
+rodio = { version = "0.19", default-features = false, features = ["symphonia-all"] }
+
+# Буфер и каналы для межпоточного взаимодействия
+futures-util = "0.3"
+async-trait = "0.1"
+screenshots = "0.8"
+base64 = "0.22"
+
+# Специфичные Windows 11 API (Win32, COM, мультимедиа, яркость, реестр)
+[target.'cfg(windows)'.dependencies]
+windows = { version = "0.58", features = [
+    "Win32_Foundation",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_System_Com",
+    "Win32_Media_Audio",
+    "Win32_Graphics_Gdi",
+    "Win32_Storage_FileSystem",
+    "Win32_System_SystemInformation",
+    "Win32_System_Power"
+] }
+
+[profile.release]
+opt-level = 3
+lto = true
+codegen-units = 1
+panic = "abort"
+strip = true

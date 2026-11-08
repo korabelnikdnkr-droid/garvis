@@ -1,0 +1,6 @@
+{
+  "name": "Jarvis Assistant",
+  "description": "Модульный голосовой ассистент Джарвис для Windows 11 на базе Tauri v2, Rust и React.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
